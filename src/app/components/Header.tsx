@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function Header() {
     return (
-        <motion.div className="mt-4 flex items-center justify-between mx-auto max-w-lg rounded-full px-4 py-2 bg-[#161616] backdrop-blur-lg border border-white/20 "
+        <motion.div className="mt-4 flex items-center justify-between mx-auto max-w-xl rounded-full px-4 py-2 bg-[#161616] backdrop-blur-lg border border-white/20 "
          initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{
