@@ -8,7 +8,7 @@ export default function Header() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{
                 duration: 0.4,
-                scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
+                scale: { type: "spring", visualDuration: 0.4, bounce: 0.3 },
             }}>
             <img src='/newspaper.svg' alt='newspaper brand logo' className="w-[2.3rem]" />
             <button className='rounded-full bg-[#363636] px-[1rem] py-[0.3rem] shadow-xl cursor-pointer hover:bg-white/30 hover:scale-105 transition-all duration-200'>Login</button>

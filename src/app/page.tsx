@@ -13,7 +13,7 @@ export default function Home() {
     <div className='flex justify-center mt-16'>
       <motion.h1
         className="font-bold text-3xl"
-        initial={{ y: -250, opacity: 0 }}      
+        initial={{ y: -150, opacity: 0 }}      
         animate={{ y: 0, opacity: 1 }}       
         transition={{
           duration: 0.6,
