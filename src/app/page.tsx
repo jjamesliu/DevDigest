@@ -11,7 +11,7 @@ export default function Home() {
     <>
     <Header />
     
-    <div className='flex flex-col justify-center mt-16 mb-24'>
+    <div className='flex flex-col justify-center mt-16 mb-32'>
       <motion.h1
         className="font-semibold text-2xl leading-[2.3rem] text-center "
         initial={{ y: 0, opacity: 0 }}      
@@ -37,16 +37,18 @@ export default function Home() {
     </div>
 
 {/* PostCard Articles */}
-    <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mx-12 text-center'>
-      <div className=' '>
-        <h1>Github Trends</h1>
+    <div className='grid grid-cols-1 md:grid-cols-2 gap-20 max-w-[75%] mx-auto text-center '>
+      <div className=' p-8 rounded-xl bg-[#222222]/30 shadow-[0_0_20px_15px_rgba(255,255,255,0.08)] shadow-black/50'>
+        <h1 className='font-semibold text-xl mb-8'>Github Trends</h1>
         <GithubPostCard />
-
       </div>
-      <div className=' '>
-        <h1>YouTube Dev Videos</h1>
 
+
+      <div className=' p-8 rounded-xl bg-[#222222]/30 shadow-[0_0_20px_15px_rgba(255,255,255,0.08)] shadow-black/50'>
+        <h1 className='font-semibold text-xl mb-8'>Youtube Dev Videos</h1>
+        <GithubPostCard />
       </div>
+
       <div className=' '>
         <h1>Reddit Discussions</h1>
 
