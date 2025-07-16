@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import Header from './components/Header';
 import GithubPostCard from './components/GitHubPostCard';
+import YoutubePostCard from './components/YoutubePostCard';
 
 
 
@@ -17,7 +18,7 @@ export default function Home() {
         initial={{ y: 0, opacity: 0 }}      
         animate={{ y: 0, opacity: 1 }}       
         transition={{
-          duration: 2,
+          duration: 1.5,
           ease: 'easeOut',
         }}
       >
@@ -28,7 +29,7 @@ export default function Home() {
         initial={{ y: 0, opacity: 0 }}      
         animate={{ y: 0, opacity: 1 }}       
         transition={{
-          duration: 2,
+          duration: 1.5,
           ease: 'easeOut',
         }}
       >
@@ -46,7 +47,7 @@ export default function Home() {
 
       <div className=' p-8 rounded-xl bg-[#222222]/30 shadow-[0_0_20px_15px_rgba(255,255,255,0.08)] shadow-black/50'>
         <h1 className='font-semibold text-xl mb-8'>Youtube Dev Videos</h1>
-        <GithubPostCard />
+        <YoutubePostCard />
       </div>
 
       <div className=' '>
