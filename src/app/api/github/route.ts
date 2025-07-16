@@ -10,8 +10,6 @@ export async function GET() {
      });
 
      const data = await response.json();
-     console.log(data);
-     console.log(data.items);
      return NextResponse.json(data.items);
      
     

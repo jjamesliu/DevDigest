@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
     const query = "computer science web development"
-    const results = 5;
+    const results = 1;
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=${encodeURIComponent(query)}&maxResults=${results}&key=${process.env.YOUTUBE_TOKEN}`;
     const response = await fetch(url);
     const data = await response.json();
