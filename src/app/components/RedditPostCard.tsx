@@ -74,17 +74,17 @@ export default function RedditPostCard() {
             {posts.map((post, index) => (
                 <div key={index} className='mx-5'>
                     <div className="group relative bg-gray-800/60 hover:bg-gray-800/80 border border-gray-700/50 hover:border-gray-600/70 rounded-xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 hover:scale-[1.02]">
-                        <div className='flex flex-row items-center justify-between'>
+                        <div className='flex flex-row items-center justify-between gap-4'>
                             <div className='text-left flex flex-row gap-4 items-center'>
                                 <div className='bg-white w-14 h-14 rounded-full border border-white overflow-hidden'>
                                     <img src={post.icon} className="w-full h-full scale-70"/>
                                 </div>
-                                <div>
-                                    <h1 className='font-bold text-xl'>{post.subreddit}</h1>
-                                    <p className='font-medium text-sm text-gray-500'>Posted by {post.author}</p>
+                                <div className=''>
+                                    <h1 className='font-bold text-sm 2xl:text-lg'>{post.subreddit}</h1>
+                                    <p className='font-medium text-xs text-gray-500'>Posted by {post.author}</p>
                                 </div>
                             </div>
-                            <div className='w-[8rem]'>
+                            <div className='max-w-[8rem]'>
                                 <a href={post.url} target="_blank">
                                 <img src="/redditlogo.png" className=''/>
                                 </a>
