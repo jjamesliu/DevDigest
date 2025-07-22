@@ -4,7 +4,7 @@ import Header from './components/Header';
 import GithubPostCard from './components/GitHubPostCard';
 import YoutubePostCard from './components/YoutubePostCard';
 import RedditPostCard from './components/RedditPostCard';
-
+import DevtoPostCard from './components/DevtoPostCard';
 
 
 export default function Home() {
@@ -60,6 +60,7 @@ export default function Home() {
 
       <div className='p-8 rounded-xl  bg-[#222222]/30 shadow-[0_0_20px_15px_rgba(255,255,255,0.08)] shadow-black/50  '>
         <h1 className='font-semibold text-xl mb-8'>Latest Blog Articles</h1>
+        <DevtoPostCard/>
       </div>
     </div>
 
