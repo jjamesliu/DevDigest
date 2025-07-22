@@ -12,7 +12,7 @@ export default function Home() {
     <>
     <Header />
     
-    <div className='flex flex-col justify-center mt-32 mb-40'>
+    <div className='flex flex-col justify-center mt-32 mb-40 px-8'>
       <motion.h1
         className="font-semibold text-2xl leading-[2.3rem] text-center "
         initial={{ y: 0, opacity: 0 }}      

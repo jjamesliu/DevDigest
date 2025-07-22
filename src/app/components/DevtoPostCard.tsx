@@ -30,8 +30,8 @@ export default function DevtoPostCard() {
                     <div className='bg-red-200 max-h-full rounded-2xl overflow-hidden mb-4'>
                         <img className="w-full h-full object-contain" src={post.cover_image}/>
                     </div>
-                    <h1>{post.title}</h1>
-                    <p className='text-gray-400 mt-1'>{post.description}</p>
+                    <h1 className='text-sm lg:text-lg'>{post.title}</h1>
+                    <p className='text-gray-400 mt-1 text-xs sm:text-sm lg:text-md'>{post.description}</p>
                 </a>
             </div>
         ))}
