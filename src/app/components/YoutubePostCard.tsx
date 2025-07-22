@@ -22,7 +22,7 @@ export default function YoutubePostCard() {
     }, []);
 
     return (
-        <div className='space-y-6'>
+        <div className='space-y-6 my-2'>
             {videos.map(video => (
                 <div key={video.id} className=' mx-auto group relative flex flex-col items-center w-full max-w-[85%] bg-gray-800/60 hover:bg-gray-800/80 border border-gray-700/50 hover:border-gray-600/70 rounded-xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 hover:scale-[1.02]'>
                     <div className='w-full'>

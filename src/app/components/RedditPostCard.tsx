@@ -70,9 +70,9 @@ export default function RedditPostCard() {
     }
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 my-2">
             {posts.map((post, index) => (
-                <div key={index}>
+                <div key={index} className='mx-5'>
                     <div className="group relative bg-gray-800/60 hover:bg-gray-800/80 border border-gray-700/50 hover:border-gray-600/70 rounded-xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 hover:scale-[1.02]">
                         <div className='flex flex-row items-center justify-between'>
                             <div className='text-left flex flex-row gap-4 items-center'>

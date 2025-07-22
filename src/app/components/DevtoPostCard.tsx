@@ -22,9 +22,10 @@ export default function DevtoPostCard() {
     }, []);
 
     return (
-        <div className='space-y-10'>
+        <div className='space-y-6 my-2'>
         {forumPost.map((post) => (
-            <div key={post.id} className="text-left relative bg-gray-800/60 border border-gray-700/50 hover:border-gray-600/70 rounded-xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 hover:scale-[1.02]">
+            <div key={post.id} 
+            className="mx-5 text-left relative bg-gray-800/60 border border-gray-700/50 hover:border-gray-600/70 rounded-xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 hover:scale-[1.02]">
                 <a href={post.url} target="_blank">
                     <div className='bg-red-200 max-h-full rounded-2xl overflow-hidden mb-4'>
                         <img className="w-full h-full object-contain" src={post.cover_image}/>
