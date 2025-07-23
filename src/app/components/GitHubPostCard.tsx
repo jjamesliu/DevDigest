@@ -53,10 +53,10 @@ export default function GitHubPostCard() {
                 <img 
                   src={repo.owner.avatar_url} 
                   alt={repo.owner.login}
-                  className="w-10 h-10 rounded-full border-2 border-gray-600 group-hover:border-blue-500 transition-colors"
+                  className="max-w-10 h-10 rounded-full border-2 border-gray-600 group-hover:border-blue-500 transition-colors"
                 />
                 <div>
-                  <h3 className="text-white font-semibold text-lg group-hover:text-blue-400 transition-colors">
+                  <h3 className="text-white font-semibold group-hover:text-blue-400 transition-colors text-sm md:text-lg">
                     {repo.name}
                   </h3>
                   <div className="flex items-center gap-2 text-gray-400 text-sm">
