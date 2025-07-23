@@ -63,7 +63,7 @@ export default function Home() {
 
 
       <div className='flex flex-col max-h-[90rem] p-8 rounded-xl  bg-[#222222]/30 shadow-[0_0_20px_15px_rgba(255,255,255,0.08)] shadow-black/50  '>
-        <h1 className='font-semibold text-xl mb-8'>Latest Blog Articles</h1>
+        <h1 className='font-semibold text-xl mb-8'>Latest Blog Articles from Dev.to</h1>
         <div className='flex-1 overflow-y-auto scrollbar-black'>
           <DevtoPostCard/>
         </div>
