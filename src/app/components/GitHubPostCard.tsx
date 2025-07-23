@@ -36,7 +36,7 @@ export default function GitHubPostCard() {
           </li>
         ))}
           </ul> */}
-            <div className="space-y-6">
+            <div className="space-y-6 p-4">
         {repos.map((repo, index) => (
           <div 
             key={repo.id} 
