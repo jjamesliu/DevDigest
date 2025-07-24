@@ -1,5 +1,28 @@
 import { NextResponse } from 'next/server';
 
+interface RedditPost {
+    data: {
+        subreddit: string;
+        url: string;
+        title: string;
+        id: string;
+        author: string;
+        selftext: string;
+    };
+}
+
+interface RedditApiResponse {
+    data: {
+        children: RedditPost[];
+    };
+}
+
+interface SubredditAboutResponse {
+    data: {
+        icon_img: string;
+    };
+}
+
 export async function GET() {
     try {
         const keywords = [ 
@@ -34,9 +57,9 @@ export async function GET() {
 
         console.log('Raw Reddit API response:', responseText.substring(0, 500));
         
-        let data;
+        let data: RedditApiResponse;
         try {
-            data = JSON.parse(responseText);
+            data = JSON.parse(responseText) as RedditApiResponse;
         } catch (parseError) {
             console.error('Failed to parse Reddit response as JSON:', parseError);
             throw new Error(`Invalid JSON from Reddit API: ${responseText.substring(0, 200)}`);
@@ -53,11 +76,10 @@ export async function GET() {
                 'Connection': 'keep-alive',
             },
         });
-        const data2 = await response2.json();
+        const data2 = await response2.json() as SubredditAboutResponse;
         const icon = data2.data.icon_img;
 
-
-        const posts = data.data.children.map((post: any) => ({
+        const posts = data.data.children.map((post: RedditPost) => ({
             subreddit: post.data.subreddit,
             url: post.data.url,
             title: post.data.title,
@@ -65,7 +87,6 @@ export async function GET() {
             author: post.data.author,
             description: post.data.selftext,
             icon: icon,
-        
         }));
 
         console.log('Fetched posts:', posts);

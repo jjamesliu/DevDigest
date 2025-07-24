@@ -1,5 +1,14 @@
 import { NextResponse } from 'next/server';
 
+interface DevPost {
+    id: string;
+    title: string;
+    url: string;
+    description: string;
+    cover_image: string;
+}
+
+
 export async function GET() {
     const topics = ["python", "programming", "react", "webdev", "career"];
     const query = topics[Math.floor(Math.random() * topics.length)];
@@ -7,7 +16,7 @@ export async function GET() {
     const data = await response.json();
 
 
-    const posts = data.map((post:any) => ({
+    const posts = data.map((post: DevPost) => ({
         id: post.id,
         title: post.title,
         url: post.url,
