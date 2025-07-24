@@ -53,7 +53,7 @@ export async function GET() {
                 'Connection': 'keep-alive',
             },
         });
-        let data2 = await response2.json();
+        const data2 = await response2.json();
         const icon = data2.data.icon_img;
 
 
