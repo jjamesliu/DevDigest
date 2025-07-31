@@ -1,5 +1,6 @@
 'use client'; 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Header() {
     return (
@@ -12,7 +13,9 @@ export default function Header() {
                     scale: { type: "spring", visualDuration: 0.4, bounce: 0.3 },
                 }}>
                 <img src='/newspaper.svg' alt='newspaper brand logo' className="w-[2.3rem]" />
-                <button className='rounded-full bg-[#363636] px-[1rem] py-[0.3rem] shadow-xl cursor-pointer hover:bg-white/30 hover:scale-105 transition-all duration-200'>Login</button>
+                <Link href="/login">
+                    <button className='rounded-full bg-[#363636] px-[1rem] py-[0.3rem] shadow-xl cursor-pointer hover:bg-white/30 hover:scale-105 transition-all duration-200'>Login</button>
+                </Link>
             </motion.div>
         </div>
     )
