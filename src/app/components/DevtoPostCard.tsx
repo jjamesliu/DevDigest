@@ -32,7 +32,7 @@ export default function DevtoPostCard() {
                     </div>
                     <h1 className='text-sm lg:text-lg'>{post.title}</h1>
                     <p className='text-gray-400 mt-1 text-xs sm:text-sm lg:text-md'>{post.description}</p>
-                    <p className='whitespace-nowrap text-xs lg:text-sm mx-auto mt-4 py-1 px-10 md:px-30 border rounded-xl w-fit hover:scale-110 duration-300 hover:shadow-xl hover:bg-[#f3f3f3] hover:text-black'>Read More</p>
+                    <p className='whitespace-nowrap text-xs lg:text-sm mx-auto mt-4 py-1 px-10 md:px-30 border rounded-xl w-full text-center hover:scale-110 duration-300 hover:shadow-xl hover:bg-[#f3f3f3] hover:text-black'>Read More</p>
                 </a>
             </div>
         ))}
