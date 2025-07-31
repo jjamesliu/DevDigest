@@ -1,11 +1,10 @@
 'use client'
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import {motion} from 'framer-motion';
-
-export default function Login() {
+import { motion } from 'framer-motion';
+export default function SignUp() {
     return (
-        <motion.div className='max-w-xl rounded-lg mx-auto mt-40 py-20 px-5 '
+        <motion.div className='max-w-xl rounded-lg mx-auto mt-40 py-20 px-10'
         initial={{ y: 0, opacity: 0 }}      
         animate={{ y: 0, opacity: 1 }}       
         transition={{
@@ -19,9 +18,17 @@ export default function Login() {
                         <p>Back to Home</p>
                     </div>
                 </Link>
-
-                <h1 className='text-center font-bold text-xl sm:text-2xl'> Login to your account</h1>
-                <form className='w-full space-y-10 mt-10 flex flex-col pb-8'>
+                <h1 className='text-center font-bold text-xl sm:text-2xl'>Create an account</h1>
+                <form className='w-full space-y-5 mt-10 flex flex-col pb-8'>
+                        <div className='space-y-1'>
+                            <p className='text-sm pl-1 text-gray-300'>
+                                Name
+                            </p>
+                            <input type='name'
+                            required
+                            placeholder="Enter Your Name"
+                            className='border w-full px-2 py-1 rounded-lg'/>
+                        </div>
                         <div className='space-y-1'>
                             <p className='text-sm pl-1 text-gray-300'>
                                 Email
@@ -41,11 +48,11 @@ export default function Login() {
                             className='border w-full px-2 py-1 rounded-lg'/>
                         </div>
                         <button type="submit"
-                         className='px-6 py-2 border rounded-xl w-full mx-auto font-medium text-black cursor-pointer bg-white hover:bg-white/80 duration-200'>Login</button>
-                        <Link href="/signup">
+                         className='mt-5 px-6 py-2 border rounded-xl w-full mx-auto font-medium text-black cursor-pointer bg-white hover:bg-white/80 duration-200'>Sign up</button>
+                        <Link href="/login">
                             <div className='text-center hover:underline hover:text-blue-400'>
-                                <span className='text-center text-sm duration-300 cursor-pointer'>Don&apos;t have an account?</span>{' '}
-                                <span className='text-blue-300 text-sm font-semibold'>Sign up</span>
+                                <span className='text-center text-sm duration-300 cursor-pointer'>Already have an account?</span>{' '}
+                                <span className='text-blue-300 text-sm font-semibold'>Login</span>
                             </div>
                         </Link>
                 </form>

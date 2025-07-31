@@ -1,10 +1,12 @@
 'use client'; 
+
 import { motion } from 'framer-motion';
 import Header from './components/Header';
 import GithubPostCard from './components/GitHubPostCard';
 import YoutubePostCard from './components/YoutubePostCard';
 import RedditPostCard from './components/RedditPostCard';
 import DevtoPostCard from './components/DevtoPostCard';
+
 
 
 export default function Home() {
