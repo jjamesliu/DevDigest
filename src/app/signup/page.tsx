@@ -2,6 +2,8 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
+import {supabase}  from '@/lib/supabase';
+
 export default function SignUp() {
     return (
         <motion.div className='max-w-xl rounded-lg mx-auto mt-40 py-20 px-10'
