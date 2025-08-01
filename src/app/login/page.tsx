@@ -29,7 +29,7 @@ export default function Login() {
                 password: formData.password
             });
             if (result.error) {
-                console.log('an error occured while trying to log in ');
+                console.log(`an error occured while trying to log in ${result.error.message}`);
             } else {
                 console.log(`login successful. your username is ${formData.email}`);
             }

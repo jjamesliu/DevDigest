@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import {supabase}  from '@/lib/supabase';
 import {useState} from 'react';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 
 export default function SignUp() {
     const [formData, setFormData] = useState({
@@ -26,7 +26,7 @@ export default function SignUp() {
         e.preventDefault();
         console.log("Submit button clicked.")
         try {
-            const { data, error } = await supabase.auth.signUp({
+            const result = await supabase.auth.signUp({
                 email: formData.email,
                 password: formData.password,
                 options: {
@@ -35,8 +35,8 @@ export default function SignUp() {
                     }
                 }
             });
-            if (error) {
-                console.log(error.message);
+            if (result.error) {
+                console.log(result.error.message);
             } else {
                 console.log(`Check your email which is ${formData.email} for a confirmation link.`);
             }
