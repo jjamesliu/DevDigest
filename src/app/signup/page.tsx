@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import {supabase}  from '@/lib/supabase';
 import {useState} from 'react';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 export default function SignUp() {
     const [formData, setFormData] = useState({
@@ -12,7 +12,7 @@ export default function SignUp() {
         email: '',
         password: ''
     });
-    const router = useRouter();
+    // const router = useRouter();
     const [message, setMessage] = useState('');
 
     const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
@@ -38,8 +38,14 @@ export default function SignUp() {
             if (error) {
                 console.log(error.message);
             } else {
-                setMessage("Check your email for the confirmation link!");
+                console.log(`Check your email which is ${formData.email} for a confirmation link.`);
             }
+            setMessage('Sign up successful!');
+            setFormData({
+                name: '',
+                email: '',
+                password: ''
+            });
         } catch (error) {
             console.log("Error occured.")
         }
@@ -101,6 +107,10 @@ export default function SignUp() {
                         </div>
                         <button type="submit"
                          className='mt-5 px-6 py-2 border rounded-xl w-full mx-auto font-medium text-black cursor-pointer bg-white hover:bg-white/80 duration-200'>Sign up</button>
+                         {message && 
+                         <p className='text-green-300 text-center'>
+                            {message}
+                        </p>}
                         <Link href="/login">
                             <div className='text-center hover:underline hover:text-blue-400'>
                                 <span className='text-center text-sm duration-300 cursor-pointer'>Already have an account?</span>{' '}
