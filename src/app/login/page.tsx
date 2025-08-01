@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import {motion} from 'framer-motion';
 import { supabase } from '@/lib/supabase';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 
 export default function Login() {
     const [formData, setFormData] = useState({
