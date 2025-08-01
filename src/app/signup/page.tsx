@@ -3,8 +3,48 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import {supabase}  from '@/lib/supabase';
+import {useState} from 'react';
+import { useRouter } from 'next/navigation'
 
 export default function SignUp() {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: ''
+    });
+    const router = useRouter();
+    const [message, setMessage] = useState('');
+
+    const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+    };
+
+    const handleSubmit = async (e : React.FormEvent) => {
+        e.preventDefault();
+        console.log("Submit button clicked.")
+        try {
+            const { data, error } = await supabase.auth.signUp({
+                email: formData.email,
+                password: formData.password,
+                options: {
+                    data: {
+                        name: formData.name,
+                    }
+                }
+            });
+            if (error) {
+                console.log(error.message);
+            } else {
+                setMessage("Check your email for the confirmation link!");
+            }
+        } catch (error) {
+            console.log("Error occured.")
+        }
+    };
+
     return (
         <motion.div className='max-w-xl rounded-lg mx-auto mt-40 py-20 px-10'
         initial={{ y: 0, opacity: 0 }}      
@@ -21,13 +61,17 @@ export default function SignUp() {
                     </div>
                 </Link>
                 <h1 className='text-center font-bold text-xl sm:text-2xl'>Create an account</h1>
-                <form className='w-full space-y-5 mt-10 flex flex-col pb-8'>
+                <form className='w-full space-y-5 mt-10 flex flex-col pb-8'
+                onSubmit={handleSubmit}>
                         <div className='space-y-1'>
                             <p className='text-sm pl-1 text-gray-300'>
                                 Name
                             </p>
-                            <input type='name'
+                            <input type='text'
+                            name="name"
+                            value={formData.name}
                             required
+                            onChange={handleChange}
                             placeholder="Enter Your Name"
                             className='border w-full px-2 py-1 rounded-lg'/>
                         </div>
@@ -36,7 +80,10 @@ export default function SignUp() {
                                 Email
                             </p>
                             <input type='email'
+                            name="email"
+                            value={formData.email}
                             required
+                            onChange={handleChange}
                             placeholder="Email address"
                             className='border w-full px-2 py-1 rounded-lg'/>
                         </div>
@@ -45,7 +92,10 @@ export default function SignUp() {
                                 Password
                             </p>
                             <input type='password'
+                            name="password"
+                            value={formData.password}
                             required
+                            onChange={handleChange}
                             placeholder="Password"
                             className='border w-full px-2 py-1 rounded-lg'/>
                         </div>
