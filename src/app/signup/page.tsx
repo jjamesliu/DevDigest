@@ -113,7 +113,7 @@ export default function SignUp() {
                             {message}
                         </p>}
                         <Link href="/login">
-                            <div className='text-center hover:underline hover:text-blue-400'>
+                            <div className='text-center hover:opacity-75'>
                                 <span className='text-center text-sm duration-300 cursor-pointer'>Already have an account?</span>{' '}
                                 <span className='text-blue-300 text-sm font-semibold'>Login</span>
                             </div>

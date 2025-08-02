@@ -98,7 +98,7 @@ export default function Login() {
                         <p className={`text-center ${message.includes("Wrong") ? 'text-red-500' : 'text-green-300'}`}>{message}</p>
                         }
                         <Link href="/signup">
-                            <div className='text-center hover:underline hover:text-blue-400'>
+                            <div className='text-center hover:opacity-75'>
                                 <span className='text-center text-sm duration-300 cursor-pointer'>Don&apos;t have an account?</span>{' '}
                                 <span className='text-blue-300 text-sm font-semibold'>Sign up</span>
                             </div>
