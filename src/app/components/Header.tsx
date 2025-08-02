@@ -1,5 +1,6 @@
 'use client'; 
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
 
@@ -13,6 +14,12 @@ export default function Header() {
             console.log("sign in button clicked")
         }
     }
+
+    useEffect(() => {
+        console.log(user)
+        console.log(`actual username: ${userName}`)
+    }, [user, userName]);
+    
 
     return (
         <div className='px-4'>
