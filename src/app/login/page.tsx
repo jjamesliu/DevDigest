@@ -20,6 +20,7 @@ export default function Login() {
         });
     };
     
+
     const handleSubmit = async (e : React.FormEvent) => {
         e.preventDefault()
         console.log("submit button clicked");
@@ -30,18 +31,22 @@ export default function Login() {
             });
             if (result.error) {
                 console.log(`an error occured while trying to log in ${result.error.message}`);
+                setMessage("Wrong Email or Password.");
             } else {
                 console.log(`login successful. your username is ${formData.email}`);
-            }
-            setMessage('You have logged in successfully.')
-            setFormData({
+                setMessage('You have logged in successfully.');
+                setFormData({
                 email: '',
                 password: ''
-            })
+                });
+            }
         } catch (error) {
             console.log(`there was an error: ${error}`);
         }
-    };
+    }
+
+
+
 
 
     return (
@@ -90,7 +95,7 @@ export default function Login() {
                         <button type="submit"
                          className='px-6 py-2 border rounded-xl w-full mx-auto font-medium text-black cursor-pointer bg-white hover:bg-white/80 duration-200'>Login</button>
                         {message &&
-                        <p className='text-green-300 text-center'>{message}</p>
+                        <p className={`text-center ${message.includes("Wrong") ? 'text-red-500' : 'text-green-300'}`}>{message}</p>
                         }
                         <Link href="/signup">
                             <div className='text-center hover:underline hover:text-blue-400'>

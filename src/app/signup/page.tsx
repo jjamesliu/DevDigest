@@ -37,17 +37,18 @@ export default function SignUp() {
             });
             if (result.error) {
                 console.log(result.error.message);
+                setMessage("Sign Up Unsuccessful. Please try again")
             } else {
                 console.log(`Check your email which is ${formData.email} for a confirmation link.`);
-            }
-            setMessage('Sign up successful!');
-            setFormData({
+                setMessage("Sign Up Form Successful.");
+                setFormData({
                 name: '',
                 email: '',
                 password: ''
-            });
+                });
+            }
         } catch (error) {
-            console.log(`Error occured, ${error}`)
+            console.log(`Error occured, ${error}`);
         }
     };
 
@@ -108,7 +109,7 @@ export default function SignUp() {
                         <button type="submit"
                          className='mt-5 px-6 py-2 border rounded-xl w-full mx-auto font-medium text-black cursor-pointer bg-white hover:bg-white/80 duration-200'>Sign up</button>
                          {message && 
-                         <p className='text-green-300 text-center'>
+                         <p className={`text-center ${message.includes("Unsuccessful") ? 'text-red-500' : 'text-green-300'}`}>
                             {message}
                         </p>}
                         <Link href="/login">
