@@ -7,6 +7,7 @@ import GithubPostCard from './components/GitHubPostCard';
 import YoutubePostCard from './components/YoutubePostCard';
 import RedditPostCard from './components/RedditPostCard';
 import DevtoPostCard from './components/DevtoPostCard';
+
 // import { supabase } from '@/lib/supabase';
 // import Link from 'next/link';
 

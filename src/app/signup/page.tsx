@@ -4,7 +4,6 @@ import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import {supabase}  from '@/lib/supabase';
 import {useState} from 'react';
-// import { useRouter } from 'next/navigation';
 
 export default function SignUp() {
     const [formData, setFormData] = useState({
@@ -40,7 +39,7 @@ export default function SignUp() {
                 setMessage("Sign Up Unsuccessful. Please try again")
             } else {
                 console.log(`Check your email which is ${formData.email} for a confirmation link.`);
-                setMessage("Sign Up Form Successful.");
+                setMessage("Verification sucessfully sent to email.");
                 setFormData({
                 name: '',
                 email: '',

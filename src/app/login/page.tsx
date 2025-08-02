@@ -4,9 +4,10 @@ import { ArrowLeft } from 'lucide-react';
 import {motion} from 'framer-motion';
 import { supabase } from '@/lib/supabase';
 import { useState } from 'react';
-// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
+    const router = useRouter();
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -39,6 +40,9 @@ export default function Login() {
                 email: '',
                 password: ''
                 });
+                setTimeout(()=> {
+                    router.push('/');
+                }, 1000);
             }
         } catch (error) {
             console.log(`there was an error: ${error}`);
@@ -58,14 +62,14 @@ export default function Login() {
           ease: 'easeOut',
         }}>
             <div className='flex flex-col border rounded-xl p-10'>
-                <Link href='/'>
-                    <div className='flex flex-row gap-1 text-sm items-center mb-10 hover:text-blue-400 duration-300 cursor-pointer'>
+                <Link href='/' className='w-fit h-fit'>
+                    <div className='flex flex-row gap-1 text-sm items-center hover:text-blue-400 duration-300 cursor-pointe'>
                         <ArrowLeft className='w-5' />
-                        <p>Back to Home</p>
+                        <span>Back to Home</span>
                     </div>
                 </Link>
 
-                <h1 className='text-center font-bold text-xl sm:text-2xl'> Login to your account</h1>
+                <h1 className='text-center font-bold text-xl sm:text-2xl mt-10'> Login to your account</h1>
                 <form className='w-full space-y-10 mt-10 flex flex-col pb-8'
                 onSubmit={handleSubmit}>
                         <div className='space-y-1'>
