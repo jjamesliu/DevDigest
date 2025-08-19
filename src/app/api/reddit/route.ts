@@ -23,61 +23,72 @@ interface SubredditAboutResponse {
     };
 }
 
+async function fetchWithFallback(url: string, headers: Record<string, string>) {
+    const corsProxies = [
+        '', // Direct request first
+        'https://corsproxy.io/?',
+        'https://cors-anywhere.herokuapp.com/',
+        'https://api.allorigins.win/raw?url=',
+    ];
+
+    for (let i = 0; i < corsProxies.length; i++) {
+        const proxy = corsProxies[i];
+        const fullUrl = proxy ? `${proxy}${encodeURIComponent(url)}` : url;
+        
+        try {
+            console.log(`Attempt ${i + 1}: Fetching from ${fullUrl}`);
+            
+            const response = await fetch(fullUrl, { 
+                headers: proxy ? { 'User-Agent': 'Mozilla/5.0 Reddit Fetcher' } : headers,
+                method: 'GET',
+                cache: 'no-store'
+            });
+
+            if (response.ok) {
+                return response;
+            }
+            
+            console.log(`Attempt ${i + 1} failed with status: ${response.status}`);
+        } catch (error) {
+            console.log(`Attempt ${i + 1} failed with error:`, error);
+        }
+    }
+    
+    throw new Error('All fetch attempts failed');
+}
+
 export async function GET() {
     try {
         const keywords = [ 
             "AskProgramming",
         ];
         const query = keywords[Math.floor(Math.random() * keywords.length)];
-        // Fixed: Changed liamit to limit, and using .json endpoint directly
         const url = `https://www.reddit.com/r/${query}/top.json?t=week&limit=10`;
 
-        console.log('Fetching from URL:', url);
+        console.log('Fetching Reddit posts for:', query);
         
-        // Simplified headers - Reddit's JSON feeds are more permissive
         const headers = {
-            'User-Agent': 'DevDigest/1.0',
-            'Accept': 'application/json',
+            'User-Agent': 'Mozilla/5.0 (compatible; DevDigest/1.0; +https://dev-digest-pi.vercel.app)',
+            'Accept': 'application/json, text/plain, */*',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'DNT': '1',
+            'Connection': 'keep-alive',
         };
         
-        const response = await fetch(url, { 
-            headers,
-            // Add these options for better reliability
-            method: 'GET',
-            cache: 'no-store'
-        });
-
-        console.log('Reddit API response status:', response.status);
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.error('Reddit API error - Status:', response.status);
-            console.error('Reddit API error - Response:', errorText);
-            throw new Error(`Reddit API responded with status: ${response.status}`);
-        }
-
+        const response = await fetchWithFallback(url, headers);
         const data: RedditApiResponse = await response.json();
 
-        // Add delay before second request
-        await new Promise(resolve => setTimeout(resolve, 1000));
-
-        // Get subreddit icon
-        const aboutUrl = `https://www.reddit.com/r/${query}/about.json`;
+        // Simple fallback for icon - don't let this fail the whole request
         let icon = '';
-        
         try {
-            const response2 = await fetch(aboutUrl, { 
-                headers,
-                method: 'GET',
-                cache: 'no-store'
-            });
-            
-            if (response2.ok) {
-                const data2 = await response2.json() as SubredditAboutResponse;
-                icon = data2.data.icon_img || '';
-            }
+            await new Promise(resolve => setTimeout(resolve, 500));
+            const aboutUrl = `https://www.reddit.com/r/${query}/about.json`;
+            const iconResponse = await fetchWithFallback(aboutUrl, headers);
+            const iconData = await iconResponse.json() as SubredditAboutResponse;
+            icon = iconData.data.icon_img || '';
         } catch (iconError) {
-            console.log('Failed to fetch subreddit icon, continuing without it:', iconError);
+            console.log('Could not fetch subreddit icon, continuing without it');
         }
 
         const posts = data.data.children.map((post: RedditPost) => ({
@@ -90,14 +101,25 @@ export async function GET() {
             icon: icon,
         }));
 
-        console.log('Fetched posts:', posts.length);
+        console.log(`Successfully fetched ${posts.length} posts`);
         return NextResponse.json(posts);
         
     } catch (error) {
         console.error('Error fetching Reddit posts:', error);
-        return NextResponse.json(
-            { error: 'Failed to fetch Reddit posts', details: error instanceof Error ? error.message : 'Unknown error' }, 
-            { status: 500 }
-        );
+        
+        // Return mock data as fallback to prevent complete failure
+        const mockPosts = [
+            {
+                subreddit: "AskProgramming",
+                url: "https://reddit.com/r/AskProgramming",
+                title: "Service temporarily unavailable - please try again later",
+                id: "mock1",
+                author: "system",
+                description: "Reddit API is currently unavailable. This is a placeholder.",
+                icon: "",
+            }
+        ];
+        
+        return NextResponse.json(mockPosts);
     }
 }
