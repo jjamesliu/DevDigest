@@ -88,7 +88,7 @@ export async function GET() {
             const iconData = await iconResponse.json() as SubredditAboutResponse;
             icon = iconData.data.icon_img || '';
         } catch (iconError) {
-            console.log('Could not fetch subreddit icon, continuing without it');
+            console.log('Could not fetch subreddit icon, continuing without it', iconError);
         }
 
         const posts = data.data.children.map((post: RedditPost) => ({
