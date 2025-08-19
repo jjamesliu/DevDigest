@@ -30,7 +30,7 @@ export async function GET() {
         ];
         const query = keywords[Math.floor(Math.random() * keywords.length)];
         // Fixed: Changed liamit to limit, and using .json endpoint directly
-        let url = `https://www.reddit.com/r/${query}/top.json?t=week&limit=10`;
+        const url = `https://www.reddit.com/r/${query}/top.json?t=week&limit=10`;
 
         console.log('Fetching from URL:', url);
         
