@@ -3,11 +3,13 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import {motion} from 'framer-motion';
 import { supabase } from '@/lib/supabase';
+import {useAuth} from '@/hooks/useAuth'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function Login() {
     const router = useRouter();
+    const {signIn} = useAuth();
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -24,29 +26,37 @@ export default function Login() {
 
     const handleSubmit = async (e : React.FormEvent) => {
         e.preventDefault()
-        console.log("submit button clicked");
-        try { 
-            const result = await supabase.auth.signInWithPassword({
-                email: formData.email,
-                password: formData.password
-            });
-            if (result.error) {
-                console.log(`an error occured while trying to log in ${result.error.message}`);
-                setMessage("Wrong Email or Password.");
-            } else {
-                console.log(`login successful. your username is ${formData.email}`);
-                setMessage('You have logged in successfully.');
-                setFormData({
-                email: '',
-                password: ''
-                });
-                setTimeout(()=> {
-                    router.push('/');
-                }, 1000);
-            }
+        console.log("Submit button clicked");
+        try {
+            const result = await signIn(formData.email, formData.password);
         } catch (error) {
-            console.log(`there was an error: ${error}`);
+            console.error("there was an error with tryin to execute the signin function")
         }
+
+
+
+        // try { 
+        //     const result = await supabase.auth.signInWithPassword({
+        //         email: formData.email,
+        //         password: formData.password
+        //     });
+        //     if (result.error) {
+        //         console.log(`an error occured while trying to log in ${result.error.message}`);
+        //         setMessage("Wrong Email or Password.");
+        //     } else {
+        //         console.log(`login successful. your username is ${formData.email}`);
+        //         setMessage('You have logged in successfully.');
+        //         setFormData({
+        //         email: '',
+        //         password: ''
+        //         });
+        //         setTimeout(()=> {
+        //             router.push('/');
+        //         }, 1000);
+        //     }
+        // } catch (error) {
+        //     console.log(`there was an error: ${error}`);
+        // }
     }
 
 

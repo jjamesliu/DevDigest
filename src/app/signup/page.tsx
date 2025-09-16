@@ -2,10 +2,11 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
-import {supabase}  from '@/lib/supabase';
+import {useAuth} from '@/hooks/useAuth';
 import {useState} from 'react';
 
 export default function SignUp() {
+    const {signUp} = useAuth();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -24,31 +25,45 @@ export default function SignUp() {
     const handleSubmit = async (e : React.FormEvent) => {
         e.preventDefault();
         console.log("Submit button clicked.")
-        try {
-            const result = await supabase.auth.signUp({
-                email: formData.email,
-                password: formData.password,
-                options: {
-                    data: {
-                        name: formData.name,
-                    }
-                }
-            });
-            if (result.error) {
-                console.log(result.error.message);
-                setMessage("Sign Up Unsuccessful. Please try again")
-            } else {
-                console.log(`Check your email which is ${formData.email} for a confirmation link.`);
-                setMessage("Verification sucessfully sent to email.");
-                setFormData({
-                name: '',
-                email: '',
-                password: ''
-                });
-            }
-        } catch (error) {
-            console.log(`Error occured, ${error}`);
+        const result = await signUp(
+                formData.email,
+                formData.password,
+                formData.name
+        );
+        console.log("the signup result is: ", result);
+        if (result.success) {
+            console.log("the signup is successful");
+        } else {
+             console.log("the signup was unsuccessful")
         }
+ 
+
+
+
+        //     const result = await supabase.auth.signUp({
+        //         email: formData.email,
+        //         password: formData.password,
+        //         options: {
+        //             data: {
+        //                 name: formData.name,
+        //             }
+        //         }
+        //     });
+        //     if (result.error) {
+        //         console.log(result.error.message);
+        //         setMessage("Sign Up Unsuccessful. Please try again")
+        //     } else {
+        //         console.log(`Check your email which is ${formData.email} for a confirmation link.`);
+        //         setMessage("Verification sucessfully sent to email.");
+        //         setFormData({
+        //         name: '',
+        //         email: '',
+        //         password: ''
+        //         });
+        //     }
+        // } catch (error) {
+        //     console.log(`Error occured, ${error}`);
+        // }
     };
 
     return (

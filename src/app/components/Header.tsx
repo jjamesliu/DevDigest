@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
 
 export default function Header() {
-    const {user, userName, signOut, isAuthenticated} = useAuth();
+    const {user, userName, isAuthenticated, signOut} = useAuth();
     const handleAuthAction = () => {
         if (isAuthenticated) {
             signOut();
@@ -16,9 +16,8 @@ export default function Header() {
     }
 
     useEffect(() => {
-        console.log(user)
-        console.log(`actual username: ${userName}`)
-    }, [user, userName]);
+        console.log("this is the user: ", user)
+    },[]);
     
 
     return (
