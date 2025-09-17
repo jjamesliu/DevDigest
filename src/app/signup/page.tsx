@@ -36,34 +36,6 @@ export default function SignUp() {
         } else {
              console.log("the signup was unsuccessful")
         }
- 
-
-
-
-        //     const result = await supabase.auth.signUp({
-        //         email: formData.email,
-        //         password: formData.password,
-        //         options: {
-        //             data: {
-        //                 name: formData.name,
-        //             }
-        //         }
-        //     });
-        //     if (result.error) {
-        //         console.log(result.error.message);
-        //         setMessage("Sign Up Unsuccessful. Please try again")
-        //     } else {
-        //         console.log(`Check your email which is ${formData.email} for a confirmation link.`);
-        //         setMessage("Verification sucessfully sent to email.");
-        //         setFormData({
-        //         name: '',
-        //         email: '',
-        //         password: ''
-        //         });
-        //     }
-        // } catch (error) {
-        //     console.log(`Error occured, ${error}`);
-        // }
     };
 
     return (

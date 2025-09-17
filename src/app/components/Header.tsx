@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
 
 export default function Header() {
-    const {user, userName, isAuthenticated, signOut} = useAuth();
+    const {user, userName, loading, isAuthenticated, signOut} = useAuth();
+    
     const handleAuthAction = () => {
         if (isAuthenticated) {
             signOut();
@@ -14,11 +15,6 @@ export default function Header() {
             console.log("sign in button clicked")
         }
     }
-
-    useEffect(() => {
-        console.log("this is the user: ", user)
-    },[]);
-    
 
     return (
         <div className='px-4'>

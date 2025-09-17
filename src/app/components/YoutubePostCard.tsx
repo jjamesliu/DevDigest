@@ -16,7 +16,7 @@ export default function YoutubePostCard() {
         fetch('api/youtube')
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+            // console.log(data)
             setVideos(data)
     })
     }, []);

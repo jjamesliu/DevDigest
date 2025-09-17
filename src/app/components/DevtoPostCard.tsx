@@ -15,7 +15,7 @@ export default function DevtoPostCard() {
         .then(res => res.json())
         .then(data => {
             setForumPost(data)
-            console.log(data)
+            // console.log(data)
         }
         );
 

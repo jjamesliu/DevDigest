@@ -26,7 +26,7 @@ export default function RedditPostCard() {
                 
                 // First, let's see what we're actually getting
                 const responseText = await response.text();
-                console.log('Raw response:', responseText);
+                // console.log('Raw response:', responseText);
                 
                 let data;
                 try {
@@ -41,7 +41,7 @@ export default function RedditPostCard() {
                     throw new Error(data.error);
                 }
                 
-                console.log('Parsed data:', data);
+                // console.log('Parsed data:', data);
                 data = data.slice(0,5);
                 setPosts(data);
                 
